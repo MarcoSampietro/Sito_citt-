@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scopri Varsavia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stile.css') }}">
 </head>
 <body>
-    <h1>Scopri Varsavia</h1>
+    <header class="bg-dark text-white text-center py-4">
+        <h1>Scopri Varsavia</h1>
+    </header>
 
-    <div>
-        <div>
-            <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" alt="Città Vecchia">
-            <h5>Città Vecchia</h5>
-            <p>Patrimonio dell'UNESCO, la Città Vecchia è il cuore storico di Varsavia.</p>
+    <main class="container my-5">
+        <div id="cards-section" class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" alt="Città Vecchia">
+                    <div class="card-body">
+                        <h5 class="card-title">Città Vecchia</h5>
+                        <p class="card-text">Patrimonio dell'UNESCO, la Città Vecchia è il cuore storico di Varsavia.</p>
+                        <button class="btn btn-danger w-100">Scopri di più</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>

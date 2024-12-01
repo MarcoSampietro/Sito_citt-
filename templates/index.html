@@ -14,10 +14,12 @@
     </header>
 
     <main class="container my-5">
+        <!-- Sezione principale delle cards -->
         <div id="cards-section" class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Card 1 -->
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" alt="Città Vecchia">
+                    <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" class="card-img-top" alt="Città Vecchia">
                     <div class="card-body">
                         <h5 class="card-title">Città Vecchia</h5>
                         <p class="card-text">Patrimonio dell'UNESCO, la Città Vecchia è il cuore storico di Varsavia.</p>
@@ -25,23 +27,25 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div>
-                    <img src="{{url_for('static', filename='immagini/Centro_scientifico_copernico1.jpg')}}" alt="Centro Scientifico Copernico">
-                    <div>
-                        <h5>Centro Scientifico Copernico</h5>
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{url_for('static', filename='immagini/Centro_scientifico_copernico1.jpg')}}" class="card-img-top" alt="Centro Scientifico Copernico">
+                    <div class="card-body">
+                        <h5 class="card-title">Centro Scientifico Copernico</h5>
                         <p>Un museo interattivo di scienza e tecnologia per tutte le età.</p>
-                        <button>Scopri di più</button>
+                        <button class="btn btn-danger w-100">Scopri di più</button>
                     </div>
                 </div>
             </div>
-            <div>
-                <div>
-                    <img src="{{url_for('static', filename='immagini/Praga_district1.jpg')}}" alt="Praga District">
-                    <div>
-                        <h5>Praga District</h5>
-                        <p>Il quartiere alternativo, famoso per street art e locali trendy.</p>
-                        <button>Scopri di più</button>
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{url_for('static', filename='immagini/Praga_district1.jpg')}}" class="card-img-top" alt="Praga District">
+                    <div class="card-body">
+                        <h5 class="card-title">Praga District</h5>
+                        <p class="card-text">Il quartiere alternativo, famoso per street art e locali trendy.</p>
+                        <button class="btn btn-danger w-100">Scopri di più</button>
                     </div>
                 </div>
             </div>

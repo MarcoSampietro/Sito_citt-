@@ -1,6 +1,86 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const apiKey = '50a7aa80fa492fa92e874d23ad061374';
+    const cityId = 756135; // ID di Varsavia
+
+    // Funzione per formattare l'orario
+    function formatTime(timestamp) {
+        return new Date(timestamp * 1000).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Funzione per formattare la data
+    function formatDate(timestamp) {
+        return new Date(timestamp * 1000).toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    // Richiesta meteo attuale
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            const temp = data.main.temp.toFixed(1);
+            const desc = data.weather[0].description;
+            const humidity = data.main.humidity;
+            const wind = data.wind.speed;
+            const pressure = data.main.pressure;
+            const visibility = (data.visibility / 1000).toFixed(1); // Convertito in km
+            const sunrise = formatTime(data.sys.sunrise);
+            const sunset = formatTime(data.sys.sunset);
+            const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+            // Contenuto del meteo attuale
+            const weatherContent = `
+                <img src="${icon}" alt="${desc}" class="mb-2" style="width: 80px; height: 80px;">
+                <p><strong>${temp}°C</strong> - ${desc}</p>
+                <p><strong>Umidità:</strong> ${humidity}%</p>
+                <p><strong>Vento:</strong> ${wind} m/s</p>
+                <p><strong>Pressione:</strong> ${pressure} hPa</p>
+                <p><strong>Visibilità:</strong> ${visibility} km</p>
+                <p><strong>Alba:</strong> ${sunrise} | <strong>Tramonto:</strong> ${sunset}</p>
+            `;
+            document.getElementById('weather-varsavia').innerHTML = weatherContent;
+        })
+        .catch(() => {
+            document.getElementById('weather-varsavia').textContent = "Errore nel caricamento del meteo.";
+        });
+
+    // Richiesta previsioni meteo
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            let forecastContent = '<div class="d-flex flex-column">';
+
+            // Mostrare previsioni per i prossimi 5 giorni (ogni 8 step, circa ogni 24 ore)
+            data.list.forEach((item, index) => {
+                if (index % 8 === 0) {
+                    const date = formatDate(item.dt);
+                    const icon = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
+                    const temp = item.main.temp.toFixed(1);
+                    const desc = item.weather[0].description;
+
+                    forecastContent += `
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="${icon}" alt="${desc}" class="me-3" style="width: 50px; height: 50px;">
+                            <div>
+                                <p class="mb-0"><strong>${date}</strong></p>
+                                <p class="mb-0">${temp}°C - ${desc}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            forecastContent += '</div>';
+            document.getElementById('forecast-varsavia').innerHTML = forecastContent;
+        })
+        .catch(() => {
+            document.getElementById('forecast-varsavia').textContent = "Errore nel caricamento delle previsioni.";
+        });
+});
+
+
 // Mostra i dettagli di una sezione specifica
 function showDetails(section) {
     document.getElementById('cards-section').style.display = 'none';
+    document.getElementById('weather-cards').style.display = 'none';
     document.getElementById('details-section').style.display = 'block';
 
     let content = '';
@@ -84,5 +164,6 @@ function showDetails(section) {
 // Torna alla sezione principale con le cards
 function showCards() {
     document.getElementById('details-section').style.display = 'none';
+    document.getElementById('weather-cards').style.display = 'flex';
     document.getElementById('cards-section').style.display = 'flex';
 }

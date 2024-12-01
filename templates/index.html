@@ -1,171 +1,187 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scopri Varsavia</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stile.css') }}">
-    <script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
-</head>
-<body>
-    <header class="bg-dark text-white text-center py-4">
-        <h1>Scopri Varsavia</h1>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scopri Varsavia</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stile.css') }}">
+        <script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
+    </head>
+    <body>
+        <header class="bg-dark text-white text-center py-4">
+            <h1>Scopri Varsavia</h1>
+        </header>
 
-    <main class="container my-5">
-        <!-- Card lunga -->
-        <div class="col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Meteo</h5>
-                    <p class="card-text"></p>
+        <main class="container my-5">
+            <!-- Card del meteo -->
+            <div id="weather-cards" class="row">
+                <!-- Card Meteo Attuale -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Meteo Attuale a Varsavia</h5>
+                            <div id="weather-varsavia">
+                                <!-- Dati meteo attuale -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Sezione principale delle cards -->
-        <div id="cards-section" class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Card 1 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" class="card-img-top" alt="Città Vecchia">
-                    <div class="card-body">
-                        <h5 class="card-title">Città Vecchia</h5>
-                        <p class="card-text">Patrimonio dell'UNESCO, la Città Vecchia è il cuore storico di Varsavia.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('citta_vecchia')">Scopri di più</button>
+                <!-- Card Previsioni -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Previsioni per Varsavia</h5>
+                            <div id="forecast-varsavia">
+                                <!-- Previsioni  -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Centro_scientifico_copernico1.jpg')}}" class="card-img-top" alt="Centro Scientifico Copernico">
-                    <div class="card-body">
-                        <h5 class="card-title">Centro Scientifico Copernico</h5>
-                        <p>Un museo interattivo di scienza e tecnologia per tutte le età.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('centro_copernico')">Scopri di più</button>
+            <br />
+            <!-- Sezione principale delle cards -->
+            <div id="cards-section" class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Card 1 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Citta_vecchia1.jpg')}}" class="card-img-top" alt="Città Vecchia">
+                        <div class="card-body">
+                            <h5 class="card-title">Città Vecchia</h5>
+                            <p class="card-text">Patrimonio dell'UNESCO, la Città Vecchia è il cuore storico di Varsavia.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('citta_vecchia')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Centro_scientifico_copernico1.jpg')}}" class="card-img-top" alt="Centro Scientifico Copernico">
+                        <div class="card-body">
+                            <h5 class="card-title">Centro Scientifico Copernico</h5>
+                            <p>Un museo interattivo di scienza e tecnologia per tutte le età.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('centro_copernico')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Praga_district1.jpg')}}" class="card-img-top" alt="Praga District">
+                        <div class="card-body">
+                            <h5 class="card-title">Praga District</h5>
+                            <p class="card-text">Il quartiere alternativo, famoso per street art e locali trendy.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('praga_district')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Biblioteca_universitaria1.jpg')}}" class="card-img-top" alt="Biblioteca Universitaria">
+                        <div class="card-body">
+                            <h5 class="card-title">Biblioteca Universitaria</h5>
+                            <p class="card-text">Famosa per il suo tetto verde con vista spettacolare sulla città.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('biblioteca_universitaria')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Eventi1.jpg')}}" class="card-img-top" alt="Eventi a Varsavia">
+                        <div class="card-body">
+                            <h5 class="card-title">Eventi a Varsavia</h5>
+                            <p class="card-text">Scopri i festival e gli eventi che animano la città durante l'anno.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('eventi_varsavia')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Varsavia_moderna1.jpg')}}" class="card-img-top" alt="Varsavia Moderna">
+                        <div class="card-body">
+                            <h5 class="card-title">Varsavia Moderna</h5>
+                            <p class="card-text">Scopri i nuovi grattacieli e l'architettura contemporanea della città.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('varsavia_moderna')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Museo_Chopin1.jpg')}}" class="card-img-top" alt="Museo Chopin">
+                        <div class="card-body">
+                            <h5 class="card-title">Museo Chopin</h5>
+                            <p class="card-text">Dedicato al celebre compositore, con esposizioni interattive.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('museo_chopin')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 8 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Nightlife1.jpg')}}" class="card-img-top" alt="Nightlife Varsaviana">
+                        <div class="card-body">
+                            <h5 class="card-title">Nightlife Varsaviana</h5>
+                            <p class="card-text">Dai club moderni ai bar speakeasy, vivi la notte di Varsavia.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('nightlife')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 9 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Teatro_nazionale1.jpg')}}" class="card-img-top" alt="Teatro Nazionale">
+                        <div class="card-body">
+                            <h5 class="card-title">Teatro Nazionale</h5>
+                            <p class="card-text">Una delle istituzioni culturali più importanti della Polonia.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('teatro_nazionale')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 10 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Mercatini1.jpg')}}" class="card-img-top" alt="Mercatini di Natale">
+                        <div class="card-body">
+                            <h5 class="card-title">Mercatini di Natale</h5>
+                            <p class="card-text">Un'atmosfera magica durante le festività invernali.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('mercatini_natale')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 11 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Sport1.jpg')}}" class="card-img-top" alt="Sport a Varsavia">
+                        <div class="card-body">
+                            <h5 class="card-title">Sport a Varsavia</h5>
+                            <p class="card-text">Eventi sportivi, stadi e attività all'aperto per gli amanti dello sport.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('sport_varsavia')">Scopri di più</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 12 -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{url_for('static', filename='immagini/Parco1.jpg')}}" class="card-img-top" alt="Parco Łazienki">
+                        <div class="card-body">
+                            <h5 class="card-title">Parco &#321azienki</h5>
+                            <p class="card-text">Un parco incantevole con un palazzo sull'acqua e statue di Chopin.</p>
+                            <button class="btn btn-danger w-100" onclick="showDetails('parco_lazienki')">Scopri di più</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Praga_district1.jpg')}}" class="card-img-top" alt="Praga District">
-                    <div class="card-body">
-                        <h5 class="card-title">Praga District</h5>
-                        <p class="card-text">Il quartiere alternativo, famoso per street art e locali trendy.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('praga_district')">Scopri di più</button>
-                    </div>
+            <!-- Sezione dettagli -->
+            <div id="details-section" class="container my-5">
+                <div id="details-content">
+                    <!-- Il contenuto dinamico verrà inserito qui -->
                 </div>
+                <button class="btn btn-secondary mt-3" onclick="showCards()">Torna Indietro</button>
             </div>
-            <!-- Card 4 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Biblioteca_universitaria1.jpg')}}" class="card-img-top" alt="Biblioteca Universitaria">
-                    <div class="card-body">
-                        <h5 class="card-title">Biblioteca Universitaria</h5>
-                        <p class="card-text">Famosa per il suo tetto verde con vista spettacolare sulla città.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('biblioteca_universitaria')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 5 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Eventi1.jpg')}}" class="card-img-top" alt="Eventi a Varsavia">
-                    <div class="card-body">
-                        <h5 class="card-title">Eventi a Varsavia</h5>
-                        <p class="card-text">Scopri i festival e gli eventi che animano la città durante l'anno.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('eventi_varsavia')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 6 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Varsavia_moderna1.jpg')}}" class="card-img-top" alt="Varsavia Moderna">
-                    <div class="card-body">
-                        <h5 class="card-title">Varsavia Moderna</h5>
-                        <p class="card-text">Scopri i nuovi grattacieli e l'architettura contemporanea della città.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('varsavia_moderna')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 7 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Museo_Chopin1.jpg')}}" class="card-img-top" alt="Museo Chopin">
-                    <div class="card-body">
-                        <h5 class="card-title">Museo Chopin</h5>
-                        <p class="card-text">Dedicato al celebre compositore, con esposizioni interattive.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('museo_chopin')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 8 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Nightlife1.jpg')}}" class="card-img-top" alt="Nightlife Varsaviana">
-                    <div class="card-body">
-                        <h5 class="card-title">Nightlife Varsaviana</h5>
-                        <p class="card-text">Dai club moderni ai bar speakeasy, vivi la notte di Varsavia.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('nightlife')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 9 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Teatro_nazionale1.jpg')}}" class="card-img-top" alt="Teatro Nazionale">
-                    <div class="card-body">
-                        <h5 class="card-title">Teatro Nazionale</h5>
-                        <p class="card-text">Una delle istituzioni culturali più importanti della Polonia.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('teatro_nazionale')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 10 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Mercatini1.jpg')}}" class="card-img-top" alt="Mercatini di Natale">
-                    <div class="card-body">
-                        <h5 class="card-title">Mercatini di Natale</h5>
-                        <p class="card-text">Un'atmosfera magica durante le festività invernali.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('mercatini_natale')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 11 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Sport1.jpg')}}" class="card-img-top" alt="Sport a Varsavia">
-                    <div class="card-body">
-                        <h5 class="card-title">Sport a Varsavia</h5>
-                        <p class="card-text">Eventi sportivi, stadi e attività all'aperto per gli amanti dello sport.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('sport_varsavia')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 12 -->
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{url_for('static', filename='immagini/Parco1.jpg')}}" class="card-img-top" alt="Parco Łazienki">
-                    <div class="card-body">
-                        <h5 class="card-title">Parco &#321azienki</h5>
-                        <p class="card-text">Un parco incantevole con un palazzo sull'acqua e statue di Chopin.</p>
-                        <button class="btn btn-danger w-100" onclick="showDetails('parco_lazienki')">Scopri di più</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Sezione dettagli -->
-        <div id="details-section" class="container my-5">
-            <div id="details-content">
-                <!-- Il contenuto dinamico verrà inserito qui -->
-            </div>
-            <button class="btn btn-secondary mt-3" onclick="showCards()">Torna Indietro</button>
-        </div>
-    </main>
-</body>
+        </main>
+    </body>
 </html>

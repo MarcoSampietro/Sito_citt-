@@ -1,30 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const apiKey = '50a7aa80fa492fa92e874d23ad061374';
+    const apiKey = '50a7aa80fa492fa92e874d23ad061374'; // API Key per OpenWeather
     const cityId = 756135; // ID di Varsavia
+    document.getElementById('details-section').style.display = 'none'; // Nasconde la sezione dettagli inizialmente
 
-    // Funzione per formattare l'orario
+    // Funzione per formattare l'orario in formato italiano
     function formatTime(timestamp) {
         return new Date(timestamp * 1000).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
     }
 
-    // Funzione per formattare la data
+    // Funzione per formattare la data in formato italiano
     function formatDate(timestamp) {
         return new Date(timestamp * 1000).toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' });
     }
 
-    // Richiesta meteo attuale
+    // Richiesta API: Meteo attuale
     fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&units=metric`)
         .then(response => response.json())
         .then(data => {
-            const temp = data.main.temp.toFixed(1);
-            const desc = data.weather[0].description;
-            const humidity = data.main.humidity;
-            const wind = data.wind.speed;
-            const pressure = data.main.pressure;
+            const temp = data.main.temp.toFixed(1); // Temperatura attuale
+            const desc = data.weather[0].description; // Descrizione del meteo
+            const humidity = data.main.humidity;  // Umidità attuale
+            const wind = data.wind.speed; // Vento attuale
+            const pressure = data.main.pressure; // Pressione atmosferica attuale
             const visibility = (data.visibility / 1000).toFixed(1); // Convertito in km
-            const sunrise = formatTime(data.sys.sunrise);
-            const sunset = formatTime(data.sys.sunset);
-            const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            const sunrise = formatTime(data.sys.sunrise); // Alba
+            const sunset = formatTime(data.sys.sunset); // Tramonto
+            const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`; // Icona meteo
 
             // Contenuto del meteo attuale
             const weatherContent = `
@@ -51,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Mostrare previsioni per i prossimi 5 giorni (ogni 8 step, circa ogni 24 ore)
             data.list.forEach((item, index) => {
                 if (index % 8 === 0) {
-                    const date = formatDate(item.dt);
-                    const icon = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
-                    const temp = item.main.temp.toFixed(1);
-                    const desc = item.weather[0].description;
+                    const date = formatDate(item.dt); // Data
+                    const icon = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`; // Icona meteo
+                    const temp = item.main.temp.toFixed(1); // Temperatura
+                    const desc = item.weather[0].description; // Descrizione
 
                     forecastContent += `
                         <div class="d-flex align-items-center mb-3">

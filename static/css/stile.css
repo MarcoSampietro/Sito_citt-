@@ -1,26 +1,26 @@
-body {
+body { /* Font principale */
     font-family: Arial, sans-serif;
 }
-.card {
+.card { /* Stile delle card: aggiunge bordo arrotondato e ombra */
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover {
+.card:hover { /* Effetto hover per le card */
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-.card img {
+.card img { /* Immagini nelle card: riempiono lo spazio disponibile */
     border-radius: 10px 10px 0 0;
     height: 200px;
     object-fit: cover;
 }
-.card-title {
+.card-title { /* Titoli e testi delle card */
     font-size: 1.2rem;
     font-weight: bold;
 }
-.card-text {
+.card-text { 
     font-size: 0.9rem;
     color: #555;
 }
